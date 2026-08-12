@@ -23,7 +23,7 @@ function setAccent(flavor){
 function selectFlavor(index,scroll=false){
   currentFlavor=index; const f=flavors[index]; setAccent(f);
   heroImage.style.opacity='0'; heroImage.style.transform='scale(.94)';
-  setTimeout(()=>{heroImage.src=`assets/${f.slug}.webp`;heroImage.alt=`${f.name} 69 caffeine pouch can concept`;heroImage.style.opacity='1';heroImage.style.transform='none'},120);
+  setTimeout(()=>{heroImage.src=`${f.slug}.webp`;heroImage.alt=`${f.name} 69 caffeine pouch can concept`;heroImage.style.opacity='1';heroImage.style.transform='none'},120);
   heroFlavor.textContent=f.name; $$('.flavor-dot').forEach((d,i)=>d.classList.toggle('active',i===index));
   if(scroll) document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
 }
@@ -46,7 +46,7 @@ function buildFlavorGrid(){
   const grid=$('#flavorGrid'); flavors.forEach((f,i)=>{
     const card=document.createElement('article'); card.className='flavor-card reveal'+(i===6?' wide-layout':'');card.style.setProperty('--local',f.color);
     card.innerHTML=`<div class="flavor-card-head"><span>0${i+1} / FLAVOR</span><span>69</span></div>
-      <div class="flavor-visual"><img src="assets/${f.slug}.webp" loading="lazy" alt="${f.name} 69 caffeine pouch concept"></div>
+      <div class="flavor-visual"><img src="${f.slug}.webp" loading="lazy" alt="${f.name} 69 caffeine pouch concept"></div>
       <div class="flavor-card-bottom"><div><h3>${f.name}</h3><p>${f.desc}</p><div class="strength-mini">${[75,150,250].map(s=>`<button type="button" data-strength="${s}" class="${s===currentStrength?'active':''}">${s} MG</button>`).join('')}</div></div><button class="add-button" type="button" aria-label="Add ${f.name} to cart">+</button></div>`;
     card.querySelector('.flavor-visual').onclick=()=>selectFlavor(i,true);
     card.querySelectorAll('.strength-mini button').forEach(b=>b.onclick=(e)=>{e.stopPropagation();selectStrength(b.dataset.strength)});
@@ -60,7 +60,7 @@ function addToCart(index){
 function renderCart(){
   $('#cartCount').textContent=cart.length;const list=$('#cartItems'); list.innerHTML='';
   $('#cartEmpty').style.display=cart.length?'none':'flex';
-  cart.forEach(item=>{const f=flavors[item.flavor];const el=document.createElement('div');el.className='cart-item';el.innerHTML=`<img src="assets/${f.slug}.webp" alt=""><div><strong>${f.name}</strong><small>${item.strength} mg · $${item.price}</small></div><button type="button" aria-label="Remove">×</button>`;el.querySelector('button').onclick=()=>{cart=cart.filter(x=>x.id!==item.id);renderCart()};list.appendChild(el)});
+  cart.forEach(item=>{const f=flavors[item.flavor];const el=document.createElement('div');el.className='cart-item';el.innerHTML=`<img src="${f.slug}.webp" alt=""><div><strong>${f.name}</strong><small>${item.strength} mg · $${item.price}</small></div><button type="button" aria-label="Remove">×</button>`;el.querySelector('button').onclick=()=>{cart=cart.filter(x=>x.id!==item.id);renderCart()};list.appendChild(el)});
   $('#cartTotal').textContent=`$${cart.reduce((s,x)=>s+x.price,0)}`
 }
 function openCart(v=true){$('#cartDrawer').classList.toggle('open',v);$('#cartDrawer').setAttribute('aria-hidden',String(!v));document.body.style.overflow=v?'hidden':''}

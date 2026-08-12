@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#07070a" />
-  <meta name="description" content="69 — caffeine pouches concept store. Seven flavors. Three strength tiers." />
-  <title>69 — Energy. Focus. Anywhere.</title>
+  <meta name="description" content="69 caffeine pouches — concept storefront with seven flavors, three strength tiers and a performance-focused formula." />
+  <title>69 — Energy That Hits Different</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -15,6 +15,8 @@
   <div class="noise" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
 
+  <div class="announcement">CONCEPT V2 · 7 FLAVORS · 3 STRENGTHS · FORMULA VALUES ARE PLACEHOLDERS</div>
+
   <header class="nav-wrap">
     <nav class="nav container" aria-label="Main navigation">
       <a class="brand" href="#top" aria-label="69 home"><span>6</span><span>9</span></a>
@@ -22,252 +24,184 @@
         <a href="#flavors">Flavors</a>
         <a href="#strength">Strength</a>
         <a href="#formula">Formula</a>
-        <a href="#how">How it works</a>
+        <a href="#why">Why 69</a>
+        <a href="#faq">FAQ</a>
+        <a href="blog.html">Blog</a>
       </div>
-      <button class="cart-button" id="cartButton" type="button" aria-label="Open cart">
-        <span>Cart</span><span class="cart-count" id="cartCount">0</span>
-      </button>
+      <div class="nav-actions">
+        <a class="waitlist-mini" href="#waitlist">Waitlist</a>
+        <button class="cart-button" id="cartButton" type="button" aria-label="Open cart">
+          <span>Cart</span><span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero section-shell">
-      <div class="hero-aurora" id="heroAurora" aria-hidden="true"></div>
-      <div class="container hero-grid">
+      <div class="hero-aurora" aria-hidden="true"></div>
+      <div class="hero-grid container">
         <div class="hero-copy reveal">
-          <div class="eyebrow"><span class="live-dot"></span> caffeine pouch system / concept v1</div>
+          <div class="eyebrow"><span class="live-dot"></span> pocket energy / concept system</div>
           <h1>ENERGY<br><span>THAT HITS</span><br>DIFFERENT.</h1>
-          <p class="hero-sub">Seven flavors. Three intensity levels. A pocket-size performance ritual built around caffeine with a concept stack of L-theanine, Alpha-GPC and vitamin D.</p>
-
+          <p class="hero-sub">A bold caffeine pouch concept built around seven flavor worlds, three intensity tiers and a clean, product-first experience.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#flavors">Shop flavors <span>↗</span></a>
             <a class="btn btn-ghost" href="#formula">Explore formula</a>
           </div>
-
-          <div class="quick-stats" aria-label="Product overview">
-            <div><strong>7</strong><span>flavors</span></div>
-            <div><strong>3</strong><span>strengths</span></div>
-            <div><strong>$4</strong><span>from / can</span></div>
+          <div class="hero-badges">
+            <span>NO LIQUID</span><span>POCKET FORMAT</span><span>7 FLAVORS</span>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="Featured product">
-          <div class="orbit orbit-a"></div>
-          <div class="orbit orbit-b"></div>
-          <div class="float-chip chip-one">CAFFEINE</div>
-          <div class="float-chip chip-two">L-THEANINE</div>
-          <div class="float-chip chip-three">ALPHA-GPC</div>
-
-          <div class="can-stage" id="canStage">
-            <div class="can" id="heroCan">
-              <div class="can-side"></div>
-              <div class="can-face">
-                <img id="heroImage" src="berry-blast.webp" alt="Berry Blast 69 caffeine pouch can concept" />
-                <div class="can-gloss"></div>
-                <div class="strength-stamp" id="strengthStamp">75 MG</div>
-              </div>
-            </div>
+        <div class="hero-showcase reveal" id="heroShowcase">
+          <div class="hero-image-wrap" id="heroImageWrap">
+            <img id="heroImage" src="berry-blast-3d.png" alt="Berry Blast 69 caffeine pouch tin, 3D concept render" />
+            <div class="hero-ring ring-a"></div><div class="hero-ring ring-b"></div>
           </div>
-
-          <div class="product-caption">
-            <div>
-              <span class="caption-kicker">Selected flavor</span>
-              <strong id="heroFlavor">Berry Blast</strong>
-            </div>
-            <div class="hero-price"><span id="heroPrice">$4</span><small>/ can</small></div>
+          <div class="hero-product-meta">
+            <div><small>SELECTED FLAVOR</small><strong id="heroFlavor">Berry Blast</strong></div>
+            <div class="hero-price"><strong id="heroPrice">$4</strong><small>/ can</small></div>
           </div>
-
-          <div class="flavor-dots" id="flavorDots" aria-label="Select featured flavor"></div>
+          <div class="hero-selector" id="heroSelector" aria-label="Select a flavor"></div>
         </div>
       </div>
-
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span>69 ENERGY</span><i>✦</i><span>FOCUS MODE</span><i>✦</i><span>POCKET POWER</span><i>✦</i><span>7 FLAVORS</span><i>✦</i><span>69 ENERGY</span><i>✦</i><span>FOCUS MODE</span><i>✦</i><span>POCKET POWER</span><i>✦</i><span>7 FLAVORS</span><i>✦</i>
-        </div>
-      </div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>69 ENERGY</span><i>✦</i><span>FOCUS MODE</span><i>✦</i><span>POCKET POWER</span><i>✦</i><span>SEVEN FLAVORS</span><i>✦</i><span>69 ENERGY</span><i>✦</i><span>FOCUS MODE</span><i>✦</i><span>POCKET POWER</span><i>✦</i><span>SEVEN FLAVORS</span><i>✦</i></div></div>
     </section>
 
     <section class="section section-light" id="strength">
       <div class="container">
         <div class="section-head reveal">
           <span class="section-number">01</span>
-          <div>
-            <p class="overline">CHOOSE YOUR LEVEL</p>
-            <h2>Three modes.<br>One switch.</h2>
-          </div>
-          <p class="section-intro">The pricing and formulation below are placeholders for the visual concept. Final dose architecture should be validated before launch.</p>
+          <div><p class="overline">CHOOSE YOUR LEVEL</p><h2>Three modes.<br>One ritual.</h2></div>
+          <p class="section-intro">Pricing and formula values are concept placeholders. The highest tier is intentionally flagged for additional safety and regulatory review before any launch.</p>
         </div>
 
         <div class="strength-grid">
           <button class="strength-card active reveal" data-strength="75" type="button">
             <div class="strength-top"><span>01</span><span>LIGHT BOOST</span></div>
-            <strong>75<small>mg</small></strong>
-            <p>Lower tier for people who want a lighter caffeine option.</p>
+            <strong>75<small>mg</small></strong><p>Entry concept tier for a lighter caffeine option.</p>
             <div class="strength-bottom"><span>$4 / can</span><span class="pill">START</span></div>
           </button>
           <button class="strength-card reveal" data-strength="150" type="button">
             <div class="strength-top"><span>02</span><span>DAILY DRIVE</span></div>
-            <strong>150<small>mg</small></strong>
-            <p>Mid tier positioned around focused work, training and long days.</p>
+            <strong>150<small>mg</small></strong><p>Mid concept tier for a stronger performance positioning.</p>
             <div class="strength-bottom"><span>$5 / can</span><span class="pill">CORE</span></div>
           </button>
           <button class="strength-card max reveal" data-strength="250" type="button">
             <div class="strength-top"><span>03</span><span>MAX MODE</span></div>
-            <strong>250<small>mg</small></strong>
-            <p>High-caffeine concept tier. Requires extra formulation and safety review.</p>
+            <strong>250<small>mg</small></strong><p>High-caffeine concept tier. Not positioned as an everyday default.</p>
             <div class="strength-bottom"><span>$6 / can</span><span class="pill">MAX</span></div>
           </button>
         </div>
-
-        <div class="warning-strip reveal">
-          <span>HIGH CAFFEINE</span>
-          <p>Concept product for adults. Avoid combining with other caffeine sources. Not recommended for children, pregnancy/breastfeeding or people sensitive to caffeine. Final warnings and serving guidance require regulatory review.</p>
-        </div>
+        <div class="warning-strip reveal"><strong>HIGH CAFFEINE CONCEPT</strong><p>Adults only concept. Do not stack excessively with coffee, energy drinks or other caffeine sources. Final serving guidance, warnings and legal language require professional review.</p></div>
       </div>
     </section>
 
-    <section class="section flavor-section" id="flavors">
+    <section class="section flavors-section" id="flavors">
       <div class="container">
         <div class="section-head dark reveal">
           <span class="section-number">02</span>
-          <div>
-            <p class="overline">THE LINEUP</p>
-            <h2>Pick your<br>obsession.</h2>
-          </div>
-          <p class="section-intro">Each flavor gets its own visual universe. Tap a can to make it the hero, then add your selected strength to the demo cart.</p>
+          <div><p class="overline">THE LINEUP</p><h2>Seven flavors.<br>Seven worlds.</h2></div>
+          <p class="section-intro">The 3D tins are now the visual core. Pick a strength, add a flavor to the demo cart or tap a product to bring it into the hero.</p>
         </div>
-
         <div class="flavor-grid" id="flavorGrid"></div>
       </div>
     </section>
 
+    <section class="section bundle-section" id="bundles">
+      <div class="container">
+        <div class="split-head reveal"><div><p class="overline">BUILD A STACK</p><h2>Bundles that feel<br>like a real launch.</h2></div><p>Demo packs make the store easier to browse and give the concept more commercial structure without requiring a live checkout yet.</p></div>
+        <div class="bundle-grid">
+          <article class="bundle-card reveal"><span class="bundle-tag">STARTER</span><h3>First Hit Pack</h3><p>Berry Blast · Fresh Mint · Watermelon Ice</p><strong>3 cans</strong><button type="button" class="bundle-add" data-bundle="starter">Add demo pack</button></article>
+          <article class="bundle-card featured reveal"><span class="bundle-tag">DISCOVERY</span><h3>All 7 Flavors</h3><p>The full lineup in one flavor-first bundle.</p><strong>7 cans</strong><button type="button" class="bundle-add" data-bundle="discovery">Add demo pack</button></article>
+          <article class="bundle-card reveal"><span class="bundle-tag">FOCUS</span><h3>Work Mode</h3><p>Energy Drink · Cola · Cappuccino</p><strong>3 cans</strong><button type="button" class="bundle-add" data-bundle="focus">Add demo pack</button></article>
+        </div>
+      </div>
+    </section>
+
     <section class="section formula-section" id="formula">
-      <div class="container">
-        <div class="formula-layout">
-          <div class="formula-copy reveal">
-            <span class="section-number">03</span>
-            <p class="overline">CONCEPT FORMULA</p>
-            <h2>Built around<br>the signal.</h2>
-            <p>Caffeine is the core stimulant. The supporting ingredients are shown as a concept stack only, with final amounts still to be determined.</p>
-            <div class="formula-strength-selector" id="formulaStrengthSelector">
-              <button class="active" data-strength="75" type="button">75</button>
-              <button data-strength="150" type="button">150</button>
-              <button data-strength="250" type="button">250</button>
-              <span>MG CAFFEINE</span>
-            </div>
-          </div>
-
-          <div class="ingredient-grid" id="ingredientGrid">
-            <article class="ingredient-card reveal">
-              <div class="molecule">C8H10N4O2</div>
-              <div class="ingredient-value" data-key="caffeine">75 mg</div>
-              <h3>Caffeine</h3>
-              <p>The primary active for alertness and energy positioning.</p>
-            </article>
-            <article class="ingredient-card reveal">
-              <div class="molecule">C7H14N2O3</div>
-              <div class="ingredient-value" data-key="theanine">100 mg</div>
-              <h3>L-Theanine</h3>
-              <p>Included in the concept as a complementary ingredient alongside caffeine.</p>
-            </article>
-            <article class="ingredient-card reveal">
-              <div class="molecule">CHOLINE</div>
-              <div class="ingredient-value" data-key="alpha">50 mg</div>
-              <h3>Alpha-GPC</h3>
-              <p>A choline source used here to support the performance-focused product story.</p>
-            </article>
-            <article class="ingredient-card reveal">
-              <div class="molecule">D3</div>
-              <div class="ingredient-value" data-key="vitd">5 µg</div>
-              <h3>Vitamin D</h3>
-              <p>A micronutrient component in the concept stack, not an acute stimulant.</p>
-            </article>
-          </div>
+      <div class="container formula-layout">
+        <div class="formula-copy reveal">
+          <span class="section-number">03</span><p class="overline">CONCEPT FORMULA</p><h2>Built around<br>the signal.</h2>
+          <p>Caffeine is the headline active. The supporting ingredients below are part of the current visual prototype and should be treated as editable placeholders, not final formulation claims.</p>
+          <div class="formula-strength-selector" id="formulaStrengthSelector"><button class="active" data-strength="75" type="button">75</button><button data-strength="150" type="button">150</button><button data-strength="250" type="button">250</button><span>MG CAFFEINE</span></div>
         </div>
-        <div class="concept-note reveal"><strong>FORMULA NOTE:</strong> Amounts on this prototype are placeholders. They are intentionally centralized in the site data so the real formulation can be swapped in later.</div>
-      </div>
-    </section>
-
-    <section class="section compare-section">
-      <div class="container">
-        <div class="compare-card reveal">
-          <div class="compare-title">
-            <p class="overline">WHY POUCHES?</p>
-            <h2>No cup.<br>No can.<br>No ceremony.</h2>
-          </div>
-          <div class="compare-table" role="table" aria-label="Format comparison">
-            <div class="compare-row head" role="row"><span></span><b>69</b><b>Coffee</b><b>Energy drink</b></div>
-            <div class="compare-row" role="row"><span>Pocket-sized</span><b>✓</b><b>—</b><b>△</b></div>
-            <div class="compare-row" role="row"><span>No liquid</span><b>✓</b><b>—</b><b>—</b></div>
-            <div class="compare-row" role="row"><span>Strength choice</span><b>✓</b><b>△</b><b>△</b></div>
-            <div class="compare-row" role="row"><span>Fast routine</span><b>✓</b><b>△</b><b>✓</b></div>
-          </div>
+        <div class="ingredient-grid">
+          <article class="ingredient-card reveal"><span class="molecule">C8H10N4O2</span><strong class="ingredient-value" data-key="caffeine">75 mg</strong><h3>Caffeine</h3><p>Primary stimulant ingredient used for the product's energy positioning.</p></article>
+          <article class="ingredient-card reveal"><span class="molecule">C7H14N2O3</span><strong class="ingredient-value" data-key="theanine">100 mg</strong><h3>L-Theanine</h3><p>Included as a complementary concept ingredient alongside caffeine.</p></article>
+          <article class="ingredient-card reveal"><span class="molecule">CHOLINE</span><strong class="ingredient-value" data-key="alpha">50 mg</strong><h3>Alpha-GPC</h3><p>A choline source used here as part of the performance-focused formula story.</p></article>
+          <article class="ingredient-card reveal"><span class="molecule">D3</span><strong class="ingredient-value" data-key="vitd">5 µg</strong><h3>Vitamin D</h3><p>A micronutrient element in the concept stack, not an acute stimulant.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section how-section" id="how">
+    <section class="section why-section" id="why">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="section-number">04</span>
-          <div><p class="overline">HOW IT WORKS</p><h2>Three moves.<br>You're set.</h2></div>
-          <p class="section-intro">The interaction is intentionally simple so the product, flavor and strength stay front and center.</p>
+        <div class="section-head reveal"><span class="section-number">04</span><div><p class="overline">WHY 69?</p><h2>Built for movement.<br>Designed to stand out.</h2></div><p class="section-intro">The product story is less about replacing a specific drink and more about making energy feel portable, visual and easy to choose.</p></div>
+        <div class="why-grid">
+          <article class="why-card reveal"><span>01</span><h3>Portable format</h3><p>No cup, bottle or shaker required for the pouch routine.</p></article>
+          <article class="why-card reveal"><span>02</span><h3>Strength choice</h3><p>Three clearly separated concept tiers make the range easy to navigate.</p></article>
+          <article class="why-card reveal"><span>03</span><h3>Flavor-first design</h3><p>Every flavor gets its own color system, 3D tin and visual identity.</p></article>
+          <article class="why-card reveal"><span>04</span><h3>Built to scale</h3><p>Formula values, prices, flavors and content all live in editable site data.</p></article>
         </div>
+      </div>
+    </section>
 
-        <div class="steps">
-          <article class="step reveal"><span>01</span><h3>Pick a flavor</h3><p>Seven profiles, from berry and tropical to mint, cola and cappuccino.</p></article>
-          <article class="step reveal"><span>02</span><h3>Choose strength</h3><p>75, 150 or 250 mg concept tiers, each with its own price point.</p></article>
-          <article class="step reveal"><span>03</span><h3>Pop & go</h3><p>Portable pouch format designed for a quick, discreet routine.</p></article>
-        </div>
+    <section class="section usecases-section">
+      <div class="container">
+        <div class="split-head reveal"><div><p class="overline">USE CASES</p><h2>One brand.<br>Different moments.</h2></div><p>Positioning examples only. Final marketing language should match the real formula and applicable regulations.</p></div>
+        <div class="usecase-grid"><article class="usecase reveal"><b>WORK</b><h3>Deep-task mode</h3><p>For long blocks of focused work when portability matters.</p></article><article class="usecase reveal"><b>TRAINING</b><h3>Pre-session ritual</h3><p>A compact alternative format for people who already use caffeine around training.</p></article><article class="usecase reveal"><b>STUDY</b><h3>Revision mode</h3><p>A simple concept for study sessions without carrying a drink.</p></article><article class="usecase reveal"><b>GAMING</b><h3>Stay switched on</h3><p>Performance-style positioning for long sessions and competitive focus.</p></article></div>
       </div>
     </section>
 
     <section class="section faq-section" id="faq">
       <div class="container faq-layout">
-        <div class="faq-title reveal"><p class="overline">FAQ</p><h2>Questions<br>before launch.</h2></div>
+        <div class="faq-title reveal"><p class="overline">FAQ</p><h2>Before<br>the first drop.</h2><a href="blog.html" class="text-link">Read the blog →</a></div>
         <div class="faq-list">
-          <details class="reveal"><summary>Are these the final formulas?</summary><p>No. Every non-caffeine ingredient amount on this prototype is a placeholder. The purpose of this version is visual direction, UX and product architecture.</p></details>
-          <details class="reveal"><summary>Are all seven flavors available in every strength?</summary><p>That is how this mock store is structured. You can later restrict certain flavors to specific tiers without changing the overall design.</p></details>
-          <details class="reveal"><summary>Does the cart take real payments?</summary><p>Not yet. The cart is a functioning front-end demo. Stripe, Shopify or another checkout can be connected after the product and legal setup are finalized.</p></details>
-          <details class="reveal"><summary>Why is 250 mg marked MAX?</summary><p>It is a high-caffeine concept tier, so the interface deliberately separates it visually. Final dose, serving instructions and warnings should be reviewed before commercialization.</p></details>
+          <details class="reveal"><summary>What are caffeine pouches?</summary><p>They are a pouch-format caffeine product concept designed to be used without a drink. The final product format, serving instructions and regulatory classification still need to be confirmed.</p></details>
+          <details class="reveal"><summary>Are the 75 / 150 / 250 mg values final?</summary><p>No. The three tiers are part of the current store concept. The 250 mg tier is intentionally marked as high caffeine and should receive dedicated safety and formulation review before commercialization.</p></details>
+          <details class="reveal"><summary>How many pouches will be in one can?</summary><p>Not decided yet. The website is structured so that pouch count, net weight, strength and pricing can be updated later from one data source.</p></details>
+          <details class="reveal"><summary>Why include L-Theanine?</summary><p>It is currently included as a supporting concept ingredient to sit alongside caffeine. Exact dose and any final claims must be based on the finished formulation and evidence.</p></details>
+          <details class="reveal"><summary>What is Alpha-GPC doing in the formula?</summary><p>Alpha-GPC is shown as a choline-source component in the performance positioning. Its final inclusion and dose are not yet locked.</p></details>
+          <details class="reveal"><summary>Can I combine 69 with coffee or energy drinks?</summary><p>The concept should not encourage excessive caffeine stacking. Final packaging should include clear serving guidance and warnings based on the finished caffeine dose.</p></details>
+          <details class="reveal"><summary>Is checkout live?</summary><p>No. The current cart is a front-end demo only. Stripe, Shopify or another checkout can be connected later.</p></details>
+          <details class="reveal"><summary>Will every flavor launch at once?</summary><p>That is the current visual plan, but the final launch lineup can be reduced or phased without redesigning the store.</p></details>
         </div>
       </div>
     </section>
 
-    <section class="final-cta">
-      <div class="final-visual" aria-hidden="true"><div class="mega-69">69</div></div>
-      <div class="container final-copy reveal">
-        <p class="overline">69 / CONCEPT 01</p>
-        <h2>CHOOSE<br>YOUR MODE.</h2>
-        <a href="#flavors" class="btn btn-primary">Explore all flavors <span>↗</span></a>
+    <section class="section blog-preview" id="blog">
+      <div class="container">
+        <div class="split-head reveal"><div><p class="overline">69 JOURNAL</p><h2>Build the brand<br>beyond the product.</h2></div><a href="blog.html" class="btn btn-ghost">View all articles</a></div>
+        <div class="blog-grid">
+          <a class="blog-card reveal" href="blog.html#what-are-caffeine-pouches"><span>GUIDE · 6 MIN</span><h3>What Are Caffeine Pouches?</h3><p>A simple breakdown of the format, how to think about strength and what users should understand before trying one.</p><b>Read article →</b></a>
+          <a class="blog-card reveal" href="blog.html#caffeine-theanine"><span>FORMULA · 5 MIN</span><h3>Caffeine + L-Theanine: Why Pair Them?</h3><p>How the two ingredients are commonly discussed together, without overclaiming what a final product can promise.</p><b>Read article →</b></a>
+          <a class="blog-card reveal" href="blog.html#strength-guide"><span>STRENGTH · 7 MIN</span><h3>75 vs 150 vs 250 mg</h3><p>Why strength architecture matters and why higher caffeine should never be treated as automatically better.</p><b>Read article →</b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="waitlist-section" id="waitlist">
+      <div class="container waitlist-grid">
+        <div class="reveal"><p class="overline">LAUNCH LIST</p><h2>Be first<br>to get 69.</h2><p>Use this as a real pre-launch capture point later by connecting a mailing platform.</p></div>
+        <form class="waitlist-form reveal" id="waitlistForm"><label for="email">Email address</label><div><input id="email" type="email" placeholder="you@example.com" required><button class="btn btn-primary" type="submit">Join waitlist <span>↗</span></button></div><small>Demo form only — no data is sent anywhere yet.</small></form>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container footer-grid">
-      <div><a class="brand footer-brand" href="#top"><span>6</span><span>9</span></a><p>Energy. Focus. Anywhere.</p></div>
-      <div><strong>Shop</strong><a href="#flavors">Flavors</a><a href="#strength">Strengths</a><a href="#formula">Formula</a></div>
-      <div><strong>Info</strong><a href="#faq">FAQ</a><a href="#how">How it works</a><a href="#top">Concept v1</a></div>
-      <div class="footer-legal"><strong>Prototype notice</strong><p>This website is a visual prototype. Product formulation, claims, serving instructions and regulatory language are not final.</p></div>
+      <div><a class="brand footer-brand" href="#top"><span>6</span><span>9</span></a><p>Energy that hits different.</p></div>
+      <div><strong>Shop</strong><a href="#flavors">Flavors</a><a href="#strength">Strengths</a><a href="#bundles">Bundles</a></div>
+      <div><strong>Learn</strong><a href="#formula">Formula</a><a href="#faq">FAQ</a><a href="blog.html">Blog</a></div>
+      <div class="footer-legal"><strong>Prototype notice</strong><p>Concept website only. Formulation, product claims, pouch count, serving guidance, legal warnings and availability are not final.</p></div>
     </div>
   </footer>
 
   <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart">
-    <div class="cart-backdrop" id="cartBackdrop"></div>
-    <div class="cart-panel">
-      <div class="cart-head"><div><small>69 / DEMO CART</small><h3>Your stack</h3></div><button id="cartClose" type="button" aria-label="Close cart">×</button></div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-empty" id="cartEmpty"><span>69</span><p>Your cart is empty.<br>Choose a flavor to start.</p></div>
-      <div class="cart-footer">
-        <div class="cart-total"><span>Subtotal</span><strong id="cartTotal">$0</strong></div>
-        <button class="btn btn-primary checkout-demo" id="checkoutDemo" type="button">Checkout demo <span>↗</span></button>
-        <small>No payment is processed in this prototype.</small>
-      </div>
-    </div>
+    <div class="cart-backdrop" id="cartBackdrop"></div><div class="cart-panel"><div class="cart-head"><div><small>69 / DEMO CART</small><h3>Your stack</h3></div><button id="cartClose" type="button" aria-label="Close cart">×</button></div><div class="cart-items" id="cartItems"></div><div class="cart-empty" id="cartEmpty"><span>69</span><p>Your cart is empty.<br>Choose a flavor to start.</p></div><div class="cart-footer"><div class="cart-total"><span>Subtotal</span><strong id="cartTotal">$0</strong></div><button class="btn btn-primary checkout-demo" id="checkoutDemo" type="button">Checkout demo <span>↗</span></button><small>No payment is processed in this prototype.</small></div></div>
   </aside>
-
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>

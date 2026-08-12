@@ -1,23 +1,12 @@
-# 69 — Caffeine Pouches Concept Website
+# 69 Pouches — Concept V2
 
-Static front-end prototype using the supplied 7 product graphics.
+Static GitHub Pages prototype.
 
-## Run locally
-Open `index.html` in a browser, or run a tiny local server:
+## Upload
+Upload every file from this folder directly to the root of your `69-pouches` repository. Replace the existing `index.html`, `styles.css`, and `script.js`. Keep the seven `*-3d.png` files in the repository root as well.
 
-```bash
-python3 -m http.server 8080
-```
-
-Then open `http://localhost:8080`.
-
-## Free hosting
-The project works as-is on GitHub Pages, Netlify, Cloudflare Pages or Vercel.
+## GitHub Pages
+Settings → Pages → Deploy from a branch → `main` → `/(root)`.
 
 ## Important
-- Ingredient amounts are placeholders for the concept.
-- The cart is a front-end demo and does not process payments.
-- Final formulation, claims, warnings and legal copy should be reviewed before a commercial launch.
-
-## Product artwork
-All images are stored as optimized WebP files under `assets/`.
+This is a visual prototype. Formula values, product claims, pouch count, labeling, serving guidance, safety warnings and launch availability are placeholders and require validation before commercialization.

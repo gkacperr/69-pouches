@@ -14,6 +14,10 @@ const strengths = {
   250:{price:6}
 };
 
+const productPages = {
+  'berry-blast':'berry-blast.html'
+};
+
 let currentStrength = 75;
 let heroFlavorIndex = 0;
 let carouselIndex = 0;
@@ -42,9 +46,12 @@ function selectStrength(value){
 }
 
 function selectHeroFlavor(index){
+  heroFlavorIndex = index;
   const flavor = flavors[index];
   setAccent(flavor);
-  document.getElementById('heroFlavor').textContent = flavor.name;
+  $('#heroImage').src = imagePath(flavor);
+  $('#heroImage').alt = `${flavor.name} 69 caffeine pouch tin`;
+  $('#heroFlavor').textContent = flavor.name;
 }
 
 function buildFlavorCards(){
@@ -74,6 +81,16 @@ function buildFlavorCards(){
         </div>
       </div>
     `;
+
+    card.querySelector('.flavor-visual').addEventListener('click', () => {
+      const page = productPages[flavor.slug];
+      if(page){
+        window.location.href = page;
+        return;
+      }
+      selectHeroFlavor(index);
+      document.querySelector('.panel-hero').scrollIntoView({behavior:'smooth'});
+    });
 
     card.querySelector('.add-button').addEventListener('click', () => addToCart(index));
     track.appendChild(card);
@@ -208,3 +225,10 @@ const observer = new IntersectionObserver(entries => {
 
 $$('.reveal').forEach(el => observer.observe(el));
 
+let autoFlavor = 0;
+setInterval(() => {
+  if(document.visibilityState === 'visible'){
+    autoFlavor = (autoFlavor + 1) % flavors.length;
+    selectHeroFlavor(autoFlavor);
+  }
+}, 8000);

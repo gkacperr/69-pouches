@@ -449,3 +449,70 @@ button{font:inherit;color:inherit}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
+
+/* ===== BRAND V4 — LOGO + MOMENTS ===== */
+.logo-link{display:flex;align-items:center;justify-content:center;width:43px;height:43px}
+.logo-link img{width:39px;height:39px;object-fit:contain;display:block}
+
+.hero-brand-line{display:block;height:.9em;margin-top:.035em}
+.hero-brand-line img{height:.88em;width:auto;display:block}
+
+.statement-brand{display:flex;align-items:center;gap:.16em;white-space:nowrap}
+.statement-brand img{height:.77em;width:auto;display:inline-block}
+
+.footer-logo{display:flex;align-items:flex-start}
+.footer-logo img{width:92px;height:auto;display:block}
+
+.panel-moments{background:#f7f7f4;padding:116px 0 126px}
+.moments-heading{text-align:center;max-width:870px;margin:0 auto 48px}
+.moments-pill{
+  display:inline-flex;align-items:center;justify-content:center;padding:9px 15px;border-radius:999px;
+  background:#e8f1fa;color:#406a99;font-size:9px;font-weight:800;letter-spacing:.08em
+}
+.moments-heading h2{
+  margin:22px 0 0;font-family:"Space Grotesk",sans-serif;font-size:clamp(48px,5.4vw,78px);
+  line-height:.96;letter-spacing:-.058em
+}
+.moments-heading p{margin:18px 0 0;color:#72726d;font-size:14px}
+.moments-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.moment-card{
+  border:1px solid rgba(0,0,0,.085);border-radius:24px;overflow:hidden;background:#fff;
+  transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease
+}
+.moment-card:hover{transform:translateY(-5px);box-shadow:0 24px 58px rgba(0,0,0,.08);border-color:rgba(0,0,0,.13)}
+.moment-image{aspect-ratio:.82/1;overflow:hidden;background:#e9e9e5}
+.moment-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s var(--ease)}
+.moment-card:hover .moment-image img{transform:scale(1.025)}
+.moment-copy{padding:20px 20px 23px}
+.moment-copy small{color:#9a9a95;font-size:7px;font-weight:800;letter-spacing:.13em}
+.moment-copy h3{margin:9px 0 0;font-family:"Space Grotesk",sans-serif;font-size:24px;line-height:1;letter-spacing:-.04em}
+.moment-copy p{margin:10px 0 0;color:#70706b;font-size:11px;line-height:1.58}
+
+.why69{
+  margin-top:94px;padding-top:46px;border-top:1px solid rgba(0,0,0,.11);
+  display:grid;grid-template-columns:.56fr 1.44fr;gap:70px;align-items:start
+}
+.why69-title h3{
+  margin:0;max-width:390px;font-family:"Space Grotesk",sans-serif;font-size:44px;line-height:.98;letter-spacing:-.05em
+}
+.why69-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px}
+.why69-grid article{min-height:142px;padding:18px 0 23px;border-top:1px solid rgba(0,0,0,.11)}
+.why69-grid article:nth-child(-n+2){border-top:0;padding-top:0}
+.why69-grid strong{display:block;color:#a3a39e;font-size:8px;letter-spacing:.1em}
+.why69-grid h4{margin:9px 0 0;font-family:"Space Grotesk",sans-serif;font-size:20px;letter-spacing:-.035em}
+.why69-grid p{margin:7px 0 0;color:#73736e;font-size:10px;line-height:1.52}
+
+@media(max-width:1050px){
+  .moments-grid{grid-template-columns:repeat(2,1fr)}
+  .moment-image{aspect-ratio:1.05/1}
+  .why69{grid-template-columns:1fr;gap:38px}
+}
+@media(max-width:650px){
+  .hero-brand-line img{height:.82em}
+  .statement-brand{align-items:flex-end}
+  .statement-brand img{height:.72em}
+  .moments-grid{grid-template-columns:1fr}
+  .moment-image{aspect-ratio:1.25/1}
+  .why69-grid{grid-template-columns:1fr}
+  .why69-grid article:nth-child(2){border-top:1px solid rgba(0,0,0,.11);padding-top:18px}
+}

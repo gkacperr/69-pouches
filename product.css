@@ -692,3 +692,9 @@ footer p{margin:0;color:#858187;font-size:10px;line-height:1.6}
   .hero-flavor-switcher{margin-top:20px}
   .hero-flavor-card{flex-basis:94px}
 }
+
+/* BRAND V4 — real 69 mark on product pages */
+.product-logo-link{display:flex;width:43px;height:43px;align-items:center;justify-content:center}
+.product-logo-link img{width:39px;height:39px;object-fit:contain;display:block}
+.footer-logo img{width:92px;height:auto;display:block}
+.back-logo img{width:37px;height:37px;object-fit:contain;display:block}

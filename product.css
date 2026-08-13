@@ -413,7 +413,7 @@ footer p{margin:0;color:#858187;font-size:10px;line-height:1.6}
 }
 
 
-/* Flavor dock directly under product hero */
+
 .flavor-dock-section{
   background:#fff;
   border-bottom:1px solid rgba(0,0,0,.07);
@@ -512,4 +512,183 @@ footer p{margin:0;color:#858187;font-size:10px;line-height:1.6}
   }
   .flavor-dock::-webkit-scrollbar{display:none}
   .flavor-dock-card{flex:0 0 126px}
+}
+
+
+/* ===== V3 PREMIUM PRODUCT SYSTEM ===== */
+
+/* Keep the first screen dense enough that flavor switching is visible without scrolling. */
+.product-hero{
+  min-height:calc(100vh - 76px);
+  padding:48px 0 58px;
+}
+.product-hero-grid{
+  grid-template-columns:.96fr 1.04fr;
+  gap:58px;
+}
+.back-link{margin-bottom:22px}
+.product-copy h1{font-size:clamp(66px,7.2vw,112px)}
+.product-lead{margin-top:22px;font-size:16px;line-height:1.55;max-width:550px}
+.flavor-notes{margin-top:18px}
+.flavor-notes span{padding:7px 10px}
+.buy-block{margin-top:26px;padding-top:18px}
+.strength-selector button{padding:12px 10px}
+.buy-row{margin-top:13px}
+.price strong{font-size:36px}
+.add-main{padding:14px 18px}
+.concept-note{margin-top:10px}
+.product-stage{min-height:570px}
+.hero-product{width:min(91%,600px)}
+.stage-caption{bottom:8px}
+
+/* The important change: other flavors live inside the hero and are always visible. */
+.hero-flavor-switcher{
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid rgba(0,0,0,.11);
+}
+.hero-flavor-switcher-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:18px;
+  margin-bottom:11px;
+}
+.hero-flavor-switcher-head small{
+  display:block;
+  color:#9a949b;
+  font-size:6.5px;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+.hero-flavor-switcher-head strong{
+  display:block;
+  margin-top:3px;
+  font-family:"Space Grotesk";
+  font-size:13px;
+  letter-spacing:-.025em;
+}
+.hero-flavor-switcher-head>span{
+  color:#a19ca2;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.09em;
+}
+.hero-flavor-list{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:7px;
+}
+.hero-flavor-card{
+  position:relative;
+  min-width:0;
+  padding:6px 5px 8px;
+  border:1px solid rgba(0,0,0,.075);
+  border-radius:12px;
+  background:rgba(255,255,255,.58);
+  overflow:hidden;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.hero-flavor-card::after{
+  content:"";
+  position:absolute;
+  left:7px;right:7px;bottom:0;
+  height:2px;
+  background:var(--dock);
+  border-radius:999px;
+  transform:scaleX(0);
+  transition:transform .2s ease;
+}
+.hero-flavor-card:hover{
+  transform:translateY(-3px);
+  background:#fff;
+  border-color:rgba(0,0,0,.13);
+  box-shadow:0 10px 24px rgba(0,0,0,.055);
+}
+.hero-flavor-card:hover::after,
+.hero-flavor-card.active::after{transform:scaleX(1)}
+.hero-flavor-card.active{
+  background:color-mix(in srgb,var(--dock) 7%,white);
+  border-color:color-mix(in srgb,var(--dock) 33%,#d7d7d7);
+}
+.hero-flavor-thumb{
+  height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-flavor-card img{
+  max-width:62px;
+  max-height:62px;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 7px 7px rgba(0,0,0,.08));
+  transition:transform .2s ease;
+}
+.hero-flavor-card:hover img{transform:translateY(-2px) scale(1.04)}
+.hero-flavor-card span{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  text-align:center;
+  font-size:6.6px;
+  font-weight:800;
+}
+
+/* Reduce the visual "app-card" feeling further down the page. */
+.section{padding:108px 0}
+.viewer{border-radius:20px}
+.other-card{border-radius:14px}
+
+/* Subtle premium feedback. */
+.strength-selector button,
+.add-main,
+.cart-pill,
+.sticky-actions button,
+.final-price button{
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.add-main:hover,
+.cart-pill:hover,
+.sticky-actions button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+.strength-selector button:hover:not(.active){
+  border-color:#9b959c;
+  background:#fff;
+}
+
+/* Product cards on the home page can be keyboard/cursor navigable. */
+.product-link-card{cursor:pointer}
+
+@media(max-width:1180px){
+  .hero-flavor-card span{font-size:6px}
+  .hero-flavor-thumb{height:46px}
+  .hero-flavor-card img{max-width:56px;max-height:56px}
+}
+@media(max-width:1080px){
+  .product-hero{min-height:auto;padding:64px 0 70px}
+  .product-hero-grid{grid-template-columns:1fr;gap:40px}
+  .product-stage{min-height:540px}
+  .hero-flavor-list{
+    display:flex;
+    overflow-x:auto;
+    gap:8px;
+    padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .hero-flavor-list::-webkit-scrollbar{display:none}
+  .hero-flavor-card{flex:0 0 102px}
+  .hero-flavor-thumb{height:62px}
+  .hero-flavor-card img{max-width:72px;max-height:72px}
+  .hero-flavor-card span{font-size:7px}
+}
+@media(max-width:760px){
+  .product-hero{padding:44px 0 56px}
+  .product-copy h1{font-size:clamp(66px,19vw,92px)}
+  .product-stage{min-height:430px}
+  .hero-flavor-switcher{margin-top:20px}
+  .hero-flavor-card{flex-basis:94px}
 }

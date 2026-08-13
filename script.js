@@ -88,17 +88,33 @@ function buildFlavorCards(){
       </div>
     `;
 
-    card.querySelector('.flavor-visual').addEventListener('click', () => {
-      const page = productPages[flavor.slug];
-      if(page){
-        window.location.href = page;
-        return;
-      }
-      selectHeroFlavor(index);
-      document.querySelector('.panel-hero').scrollIntoView({behavior:'smooth'});
-    });
+    const page = productPages[flavor.slug];
 
-    card.querySelector('.add-button').addEventListener('click', () => addToCart(index));
+    if(page){
+      card.classList.add('product-link-card');
+      card.setAttribute('role','link');
+      card.setAttribute('tabindex','0');
+      card.setAttribute('aria-label',`Open ${flavor.name} product page`);
+
+      const openPage = () => window.location.assign(page);
+
+      card.addEventListener('click', event => {
+        if(event.target.closest('.add-button')) return;
+        openPage();
+      });
+
+      card.addEventListener('keydown', event => {
+        if(event.key === 'Enter' || event.key === ' '){
+          event.preventDefault();
+          openPage();
+        }
+      });
+    }
+
+    card.querySelector('.add-button').addEventListener('click', event => {
+      event.stopPropagation();
+      addToCart(index);
+    });
     track.appendChild(card);
   });
 }

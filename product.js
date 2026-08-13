@@ -107,3 +107,10 @@ $$('.view-buttons button').forEach(btn=>{
 
 setStrength(75);
 renderRotation();
+
+window.addEventListener('load',()=>{
+  const activeFlavor=document.querySelector('.hero-flavor-card.active');
+  if(activeFlavor && window.innerWidth<=1080){
+    activeFlavor.scrollIntoView({block:'nearest',inline:'center'});
+  }
+});

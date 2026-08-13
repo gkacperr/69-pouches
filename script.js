@@ -1,25 +1,225 @@
-const flavors=[
-{name:'Berry Blast',slug:'berry-blast',color:'#b84fe6',rgb:'184,79,230',desc:'Juicy berry profile with a vivid finish.'},
-{name:'Watermelon Ice',slug:'watermelon-ice',color:'#49c886',rgb:'73,200,134',desc:'Watermelon with a crisp icy edge.'},
-{name:'Tropical Island',slug:'tropical-island',color:'#f0a33c',rgb:'240,163,60',desc:'Bright tropical fruit with sunny notes.'},
-{name:'Energy Drink',slug:'energy-drink',color:'#3f72d8',rgb:'63,114,216',desc:'Classic energy-drink inspired profile.'},
-{name:'Fresh Mint',slug:'fresh-mint',color:'#4fbf79',rgb:'79,191,121',desc:'Cold, clean mint with a refreshing finish.'},
-{name:'Cola',slug:'cola',color:'#a44e33',rgb:'164,78,51',desc:'Dark cola character with an icy finish.'},
-{name:'Cappuccino',slug:'cappuccino',color:'#b18358',rgb:'177,131,88',desc:'Creamy coffeehouse flavor with roasted depth.'}
+const flavors = [
+  {name:'Berry Blast', slug:'berry-blast', color:'#b04fe5', rgb:'176,79,229', desc:'Juicy berry profile with a vivid finish.'},
+  {name:'Watermelon Ice', slug:'watermelon-ice', color:'#49c886', rgb:'73,200,134', desc:'Watermelon with a crisp icy edge.'},
+  {name:'Tropical Island', slug:'tropical-island', color:'#efa13a', rgb:'239,161,58', desc:'Bright tropical fruit with sunny notes.'},
+  {name:'Energy Drink', slug:'energy-drink', color:'#3e71d7', rgb:'62,113,215', desc:'Classic energy-drink inspired profile.'},
+  {name:'Fresh Mint', slug:'fresh-mint', color:'#4ebd78', rgb:'78,189,120', desc:'Cold, clean mint with a refreshing finish.'},
+  {name:'Cola', slug:'cola', color:'#a34e34', rgb:'163,78,52', desc:'Dark cola character with an icy finish.'},
+  {name:'Cappuccino', slug:'cappuccino', color:'#ae8055', rgb:'174,128,85', desc:'Creamy coffeehouse flavor with roasted depth.'}
 ];
-const strengths={75:{price:4,caffeine:'75 mg',theanine:'100 mg',alpha:'50 mg',vitd:'5 µg'},150:{price:5,caffeine:'150 mg',theanine:'150 mg',alpha:'100 mg',vitd:'5 µg'},250:{price:6,caffeine:'250 mg',theanine:'200 mg',alpha:'150 mg',vitd:'10 µg'}};
-let currentStrength=75,heroFlavorIndex=0,carouselIndex=0,cart=[];
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-function setAccent(f){document.documentElement.style.setProperty('--accent',f.color);document.documentElement.style.setProperty('--accent-rgb',f.rgb)}
-function selectStrength(v){currentStrength=Number(v);const d=strengths[currentStrength];$$('[data-strength]').forEach(b=>b.classList.toggle('active',Number(b.dataset.strength)===currentStrength));$('#heroPrice').textContent=`$${d.price}`;document.querySelector('[data-key="caffeine"]').textContent=d.caffeine;document.querySelector('[data-key="theanine"]').textContent=d.theanine;document.querySelector('[data-key="alpha"]').textContent=d.alpha;document.querySelector('[data-key="vitd"]').textContent=d.vitd;$$('.flavor-price').forEach(el=>el.textContent=`$${d.price}`);$$('.flavor-strength').forEach(el=>el.textContent=`${currentStrength} mg`)}
-function selectHeroFlavor(i){heroFlavorIndex=i;const f=flavors[i];setAccent(f);const img=$('#heroImage');img.src=`${f.slug}-clean-v4.png`;img.alt=`${f.name} 69 caffeine pouch tin`;$('#heroFlavor').textContent=f.name}
-function buildFlavorCards(){const track=$('#flavorTrack');track.innerHTML='';flavors.forEach((f,i)=>{const card=document.createElement('article');card.className='flavor-card';card.style.setProperty('--local-rgb',f.rgb);card.innerHTML=`<div class="flavor-visual"><img src="${f.slug}-clean-v4.png" alt="${f.name} 69 caffeine pouch tin" loading="lazy"></div><div class="flavor-info"><div class="flavor-info-row"><div><h3>${f.name}</h3><p>${f.desc}</p></div><strong class="flavor-price">$${strengths[currentStrength].price}</strong></div><div class="flavor-actions"><span class="flavor-strength">${currentStrength} mg</span><button class="add-button" type="button">Add to cart</button></div></div>`;card.querySelector('.flavor-visual').addEventListener('click',()=>{selectHeroFlavor(i);document.querySelector('.hero').scrollIntoView({behavior:'smooth'})});card.querySelector('.add-button').addEventListener('click',()=>addToCart(i));track.appendChild(card)})}
-function cardsVisible(){if(window.innerWidth<=720)return 1;if(window.innerWidth<=1050)return 2;return 3}
-function maxCarouselIndex(){return Math.max(0,flavors.length-cardsVisible())}
-function updateCarousel(){carouselIndex=Math.min(carouselIndex,maxCarouselIndex());const cards=$$('.flavor-card');if(!cards.length)return;const w=$('.carousel-window').clientWidth,visible=cardsVisible(),gap=18,cardWidth=(w-gap*(visible-1))/visible;$('#flavorTrack').style.transform=`translateX(-${carouselIndex*(cardWidth+gap)}px)`;$$('#carouselDots button').forEach((d,i)=>d.classList.toggle('active',i===carouselIndex))}
-function buildCarouselDots(){const wrap=$('#carouselDots');wrap.innerHTML='';for(let i=0;i<=maxCarouselIndex();i++){const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',`Go to flavor group ${i+1}`);b.addEventListener('click',()=>{carouselIndex=i;updateCarousel()});wrap.appendChild(b)}updateCarousel()}
-function addToCart(i){const f=flavors[i];cart.push({id:Date.now()+Math.random(),flavorIndex:i,strength:currentStrength,price:strengths[currentStrength].price});renderCart();showToast(`${f.name} · ${currentStrength} mg added`)}
-function renderCart(){$('#cartCount').textContent=cart.length;const items=$('#cartItems');items.innerHTML='';$('#cartEmpty').style.display=cart.length?'none':'block';cart.forEach(item=>{const f=flavors[item.flavorIndex],row=document.createElement('div');row.className='cart-item';row.innerHTML=`<img src="${f.slug}-clean-v4.png" alt=""><div><strong>${f.name}</strong><small>${item.strength} mg · $${item.price}</small></div><button type="button" aria-label="Remove item">×</button>`;row.querySelector('button').addEventListener('click',()=>{cart=cart.filter(x=>x.id!==item.id);renderCart()});items.appendChild(row)});$('#cartTotal').textContent=`$${cart.reduce((s,x)=>s+x.price,0)}`}
-function openCart(v=true){$('#cartDrawer').classList.toggle('open',v);$('#cartDrawer').setAttribute('aria-hidden',String(!v));document.body.style.overflow=v?'hidden':''}
-function showToast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove('show'),1800)}
-buildFlavorCards();selectStrength(75);selectHeroFlavor(0);buildCarouselDots();$$('[data-strength]').forEach(b=>b.addEventListener('click',()=>selectStrength(b.dataset.strength)));$('#prevFlavor').addEventListener('click',()=>{carouselIndex=carouselIndex<=0?maxCarouselIndex():carouselIndex-1;updateCarousel()});$('#nextFlavor').addEventListener('click',()=>{carouselIndex=carouselIndex>=maxCarouselIndex()?0:carouselIndex+1;updateCarousel()});$('#cartButton').addEventListener('click',()=>openCart(true));$('#cartClose').addEventListener('click',()=>openCart(false));$('#cartOverlay').addEventListener('click',()=>openCart(false));$('#checkoutButton').addEventListener('click',()=>showToast('Demo only — checkout is not connected yet'));document.addEventListener('keydown',e=>{if(e.key==='Escape')openCart(false)});window.addEventListener('resize',buildCarouselDots);const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view')}),{threshold:.12});$$('.reveal').forEach(el=>observer.observe(el));let autoFlavor=0;setInterval(()=>{if(document.visibilityState==='visible'){autoFlavor=(autoFlavor+1)%flavors.length;selectHeroFlavor(autoFlavor)}},7000);
+
+const strengths = {
+  75:{price:4},
+  150:{price:5},
+  250:{price:6}
+};
+
+let currentStrength = 75;
+let heroFlavorIndex = 0;
+let carouselIndex = 0;
+let cart = [];
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const imagePath = f => `${f.slug}-clean-v4.png`;
+
+function setAccent(flavor){
+  document.documentElement.style.setProperty('--accent', flavor.color);
+  document.documentElement.style.setProperty('--accent-rgb', flavor.rgb);
+}
+
+function selectStrength(value){
+  currentStrength = Number(value);
+  const data = strengths[currentStrength];
+
+  $$('[data-strength]').forEach(btn => {
+    btn.classList.toggle('active', Number(btn.dataset.strength) === currentStrength);
+  });
+
+  $('#heroPrice').textContent = `$${data.price}`;
+  $$('.flavor-price').forEach(el => el.textContent = `$${data.price}`);
+  $$('.flavor-strength').forEach(el => el.textContent = `${currentStrength} mg`);
+}
+
+function selectHeroFlavor(index){
+  heroFlavorIndex = index;
+  const flavor = flavors[index];
+  setAccent(flavor);
+  $('#heroImage').src = imagePath(flavor);
+  $('#heroImage').alt = `${flavor.name} 69 caffeine pouch tin`;
+  $('#heroFlavor').textContent = flavor.name;
+}
+
+function buildFlavorCards(){
+  const track = $('#flavorTrack');
+  track.innerHTML = '';
+
+  flavors.forEach((flavor, index) => {
+    const card = document.createElement('article');
+    card.className = 'flavor-card';
+    card.style.setProperty('--local-rgb', flavor.rgb);
+
+    card.innerHTML = `
+      <div class="flavor-visual">
+        <img src="${imagePath(flavor)}" alt="${flavor.name} 69 caffeine pouch tin" loading="lazy">
+      </div>
+      <div class="flavor-info">
+        <div class="flavor-info-row">
+          <div>
+            <h3>${flavor.name}</h3>
+            <p>${flavor.desc}</p>
+          </div>
+          <strong class="flavor-price">$${strengths[currentStrength].price}</strong>
+        </div>
+        <div class="flavor-actions">
+          <span class="flavor-strength">${currentStrength} mg</span>
+          <button class="add-button" type="button">Add +</button>
+        </div>
+      </div>
+    `;
+
+    card.querySelector('.flavor-visual').addEventListener('click', () => {
+      selectHeroFlavor(index);
+      document.querySelector('.panel-hero').scrollIntoView({behavior:'smooth'});
+    });
+
+    card.querySelector('.add-button').addEventListener('click', () => addToCart(index));
+    track.appendChild(card);
+  });
+}
+
+function cardsVisible(){
+  if(window.innerWidth <= 760) return 1;
+  if(window.innerWidth <= 1080) return 2;
+  return 3;
+}
+
+function maxCarouselIndex(){
+  return Math.max(0, flavors.length - cardsVisible());
+}
+
+function updateCarouselStatus(){
+  const visible = cardsVisible();
+  const start = carouselIndex + 1;
+  const end = Math.min(carouselIndex + visible, flavors.length);
+  $('#carouselCounter').textContent = `${String(start).padStart(2,'0')} — ${String(end).padStart(2,'0')}`;
+
+  const max = Math.max(1, maxCarouselIndex());
+  const progress = maxCarouselIndex() === 0 ? 100 : 34 + (carouselIndex / max) * 66;
+  $('#carouselProgress').style.width = `${progress}%`;
+}
+
+function updateCarousel(){
+  carouselIndex = Math.min(Math.max(carouselIndex, 0), maxCarouselIndex());
+
+  const cards = $$('.flavor-card');
+  if(!cards.length) return;
+
+  const windowWidth = $('.carousel-window').clientWidth;
+  const visible = cardsVisible();
+  const gap = 18;
+  const cardWidth = (windowWidth - gap * (visible - 1)) / visible;
+
+  $('#flavorTrack').style.transform = `translateX(-${carouselIndex * (cardWidth + gap)}px)`;
+  updateCarouselStatus();
+}
+
+function stepCarousel(direction){
+  const max = maxCarouselIndex();
+  if(direction > 0){
+    carouselIndex = carouselIndex >= max ? 0 : carouselIndex + 1;
+  } else {
+    carouselIndex = carouselIndex <= 0 ? max : carouselIndex - 1;
+  }
+  updateCarousel();
+}
+
+function addToCart(flavorIndex){
+  const flavor = flavors[flavorIndex];
+  cart.push({
+    id: Date.now() + Math.random(),
+    flavorIndex,
+    strength: currentStrength,
+    price: strengths[currentStrength].price
+  });
+  renderCart();
+  showToast(`${flavor.name} · ${currentStrength} mg added`);
+}
+
+function renderCart(){
+  $('#cartCount').textContent = cart.length;
+  const items = $('#cartItems');
+  items.innerHTML = '';
+  $('#cartEmpty').style.display = cart.length ? 'none' : 'block';
+
+  cart.forEach(item => {
+    const flavor = flavors[item.flavorIndex];
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+    row.innerHTML = `
+      <img src="${imagePath(flavor)}" alt="">
+      <div>
+        <strong>${flavor.name}</strong>
+        <small>${item.strength} mg · $${item.price}</small>
+      </div>
+      <button type="button" aria-label="Remove item">×</button>
+    `;
+    row.querySelector('button').addEventListener('click', () => {
+      cart = cart.filter(x => x.id !== item.id);
+      renderCart();
+    });
+    items.appendChild(row);
+  });
+
+  $('#cartTotal').textContent = `$${cart.reduce((sum, item) => sum + item.price, 0)}`;
+}
+
+function openCart(open = true){
+  $('#cartDrawer').classList.toggle('open', open);
+  $('#cartDrawer').setAttribute('aria-hidden', String(!open));
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+function showToast(message){
+  const toast = $('#toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+buildFlavorCards();
+selectStrength(75);
+selectHeroFlavor(0);
+updateCarousel();
+
+$$('[data-strength]').forEach(btn => {
+  btn.addEventListener('click', () => selectStrength(btn.dataset.strength));
+});
+$('#prevFlavor').addEventListener('click', () => stepCarousel(-1));
+$('#nextFlavor').addEventListener('click', () => stepCarousel(1));
+$('#cartButton').addEventListener('click', () => openCart(true));
+$('#cartClose').addEventListener('click', () => openCart(false));
+$('#cartOverlay').addEventListener('click', () => openCart(false));
+$('#checkoutButton').addEventListener('click', () => showToast('Demo only — checkout is not connected yet'));
+document.addEventListener('keydown', e => { if(e.key === 'Escape') openCart(false); });
+window.addEventListener('resize', () => {
+  carouselIndex = Math.min(carouselIndex, maxCarouselIndex());
+  updateCarousel();
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('in-view');
+  });
+}, {threshold:.10});
+
+$$('.reveal').forEach(el => observer.observe(el));
+
+let autoFlavor = 0;
+setInterval(() => {
+  if(document.visibilityState === 'visible'){
+    autoFlavor = (autoFlavor + 1) % flavors.length;
+    selectHeroFlavor(autoFlavor);
+  }
+}, 8000);

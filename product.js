@@ -5,6 +5,8 @@ const tiers={
 };
 
 let strength=75;
+const productName=document.body.dataset.productName || '69 Product';
+const productSlug=document.body.dataset.productSlug || 'product';
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 
@@ -34,7 +36,7 @@ function toast(message){
 }
 
 function add(){
-  toast(`Berry Blast · ${strength} mg added`);
+  toast(`${productName} · ${strength} mg added`);
 }
 
 $$('[data-strength]').forEach(btn=>{
@@ -100,15 +102,6 @@ $$('.view-buttons button').forEach(btn=>{
   btn.addEventListener('click',()=>{
     rotationY=Number(btn.dataset.view);
     renderRotation();
-  });
-});
-
-/* Other flavors are visually ready; prevent 404 until their pages are built. */
-$$('[data-future]').forEach(link=>{
-  link.addEventListener('click',e=>{
-    e.preventDefault();
-    const name=link.querySelector('span').textContent.replace(' · NEXT','');
-    toast(`${name} product page is the next build`);
   });
 });
 

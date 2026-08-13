@@ -15,7 +15,13 @@ const strengths = {
 };
 
 const productPages = {
-  'berry-blast':'berry-blast.html'
+  'berry-blast':'berry-blast.html',
+  'watermelon-ice':'watermelon-ice.html',
+  'tropical-island':'tropical-island.html',
+  'energy-drink':'energy-drink.html',
+  'fresh-mint':'fresh-mint.html',
+  'cola':'cola.html',
+  'cappuccino':'cappuccino.html'
 };
 
 let currentStrength = 75;
@@ -82,41 +88,17 @@ function buildFlavorCards(){
       </div>
     `;
 
-    const productPage = productPages[flavor.slug];
-
-    if(productPage){
-      card.style.cursor = 'pointer';
-      card.setAttribute('role', 'link');
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('aria-label', `Open ${flavor.name} product page`);
-
-      const openProduct = () => {
-        window.location.assign(productPage);
-      };
-
-      card.addEventListener('click', event => {
-        if(event.target.closest('.add-button')) return;
-        openProduct();
-      });
-
-      card.addEventListener('keydown', event => {
-        if(event.key === 'Enter' || event.key === ' '){
-          event.preventDefault();
-          openProduct();
-        }
-      });
-    } else {
-      card.querySelector('.flavor-visual').addEventListener('click', () => {
-        selectHeroFlavor(index);
-        document.querySelector('.panel-hero').scrollIntoView({behavior:'smooth'});
-      });
-    }
-
-    card.querySelector('.add-button').addEventListener('click', event => {
-      event.stopPropagation();
-      addToCart(index);
+    card.querySelector('.flavor-visual').addEventListener('click', () => {
+      const page = productPages[flavor.slug];
+      if(page){
+        window.location.href = page;
+        return;
+      }
+      selectHeroFlavor(index);
+      document.querySelector('.panel-hero').scrollIntoView({behavior:'smooth'});
     });
 
+    card.querySelector('.add-button').addEventListener('click', () => addToCart(index));
     track.appendChild(card);
   });
 }

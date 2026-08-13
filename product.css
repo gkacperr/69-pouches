@@ -411,3 +411,105 @@ footer p{margin:0;color:#858187;font-size:10px;line-height:1.6}
   html{scroll-behavior:auto}
   *,*:before,*:after{animation:none!important;transition:none!important}
 }
+
+
+/* Flavor dock directly under product hero */
+.flavor-dock-section{
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.07);
+  padding:24px 0 27px;
+}
+.flavor-dock-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:16px;
+}
+.flavor-dock-head small{
+  display:block;
+  color:#99949a;
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+.flavor-dock-head strong{
+  display:block;
+  margin-top:4px;
+  font-family:"Space Grotesk";
+  font-size:16px;
+  letter-spacing:-.03em;
+}
+.flavor-dock-head>span{
+  color:#9a959b;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.1em;
+}
+.flavor-dock{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:10px;
+}
+.flavor-dock-card{
+  position:relative;
+  min-width:0;
+  padding:10px 8px 11px;
+  border:1px solid rgba(0,0,0,.075);
+  border-radius:16px;
+  background:#fafafa;
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease;
+  overflow:hidden;
+}
+.flavor-dock-card::after{
+  content:"";
+  position:absolute;
+  left:12px;right:12px;bottom:0;
+  height:2px;
+  border-radius:999px;
+  background:var(--dock);
+  transform:scaleX(0);
+  transition:transform .22s ease;
+}
+.flavor-dock-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,0,0,.12);
+  box-shadow:0 14px 34px rgba(0,0,0,.07);
+  background:#fff;
+}
+.flavor-dock-card:hover::after,
+.flavor-dock-card.active::after{transform:scaleX(1)}
+.flavor-dock-card.active{
+  border-color:color-mix(in srgb,var(--dock) 34%,#d8d8d8);
+  background:color-mix(in srgb,var(--dock) 7%,#fff);
+}
+.flavor-dock-card img{
+  display:block;
+  width:100%;
+  aspect-ratio:1.45/1;
+  object-fit:contain;
+  filter:drop-shadow(0 8px 9px rgba(0,0,0,.09));
+  transition:transform .24s ease;
+}
+.flavor-dock-card:hover img{transform:translateY(-3px) scale(1.035)}
+.flavor-dock-card span{
+  display:block;
+  margin-top:6px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:8px;
+  font-weight:800;
+  text-align:center;
+}
+@media(max-width:900px){
+  .flavor-dock{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding-bottom:5px;
+    scrollbar-width:none;
+  }
+  .flavor-dock::-webkit-scrollbar{display:none}
+  .flavor-dock-card{flex:0 0 126px}
+}

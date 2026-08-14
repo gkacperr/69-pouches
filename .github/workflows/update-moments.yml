@@ -1,0 +1,58 @@
+name: Update lifestyle moments
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-moments.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore approved moment images from Git blobs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PY'
+          import base64, json, os, urllib.request
+          blobs = {
+              'moment-deep-work.jpg': 'afb544b85cb6e955b4b03179f42e25b01d02351b',
+              'moment-training.jpg': '10386dfebb68f10c3b5765ba649380b28fca68c0',
+              'moment-study.jpg': 'a1aa5b5de18a62e7a818dde129bd8d6228ca8951',
+              'moment-gaming.jpg': '5a9ab652644522515100cc13cd44d3d1f408907e',
+          }
+          repo = os.environ['REPO']
+          token = os.environ['GH_TOKEN']
+          for path, sha in blobs.items():
+              req = urllib.request.Request(
+                  f'https://api.github.com/repos/{repo}/git/blobs/{sha}',
+                  headers={
+                      'Authorization': f'Bearer {token}',
+                      'Accept': 'application/vnd.github+json',
+                      'X-GitHub-Api-Version': '2022-11-28',
+                      'User-Agent': '69-pouches-update',
+                  },
+              )
+              with urllib.request.urlopen(req) as r:
+                  payload = json.load(r)
+              data = base64.b64decode(payload['content'])
+              with open(path, 'wb') as f:
+                  f.write(data)
+              print(path, len(data))
+          PY
+
+      - name: Commit images and remove one-shot workflow
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/update-moments.yml
+          git add -A
+          git commit -m 'Replace lifestyle moment images'
+          git push
